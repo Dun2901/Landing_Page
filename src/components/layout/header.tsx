@@ -1,6 +1,12 @@
 import { useState } from 'react';
 import { Layout, Button, Drawer, Space, Grid } from 'antd';
-import { MenuOutlined, PhoneOutlined, CloseOutlined } from '@ant-design/icons';
+import {
+  MenuOutlined,
+  PhoneOutlined,
+  CloseOutlined,
+  CarOutlined,
+  MessageOutlined,
+} from '@ant-design/icons';
 
 const { Header: AntHeader } = Layout;
 const { useBreakpoint } = Grid;
@@ -58,7 +64,7 @@ export default function Header() {
               justifyContent: 'center',
             }}
           >
-            <span style={{ color: '#fff', fontSize: 18 }}>🚗</span>
+            <CarOutlined style={{ color: '#fff', fontSize: 20 }} />
           </div>
           <div style={{ lineHeight: 1.2 }}>
             <div
@@ -123,6 +129,7 @@ export default function Header() {
             {!isMobile && 'Gọi ngay'}
           </Button>
           <Button
+            icon={<MessageOutlined />}
             style={{
               background: '#f97316',
               borderColor: '#f97316',
@@ -132,7 +139,7 @@ export default function Header() {
             }}
             onClick={() => window.open(`https://zalo.me/${HOTLINE}`, '_blank')}
           >
-            {isMobile ? '💬' : '💬 Đặt xe Zalo'}
+            {!isMobile && 'Đặt xe Zalo'}
           </Button>
 
           {isMobile && (
@@ -152,7 +159,7 @@ export default function Header() {
         placement="right"
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
-        width={260}
+        size={260}
         closeIcon={<CloseOutlined />}
       >
         <nav style={{ display: 'flex', flexDirection: 'column', gap: 4 }}>
@@ -191,6 +198,7 @@ export default function Header() {
           </Button>
           <Button
             block
+            icon={<MessageOutlined />}
             style={{
               background: '#f97316',
               borderColor: '#f97316',
@@ -200,7 +208,7 @@ export default function Header() {
             }}
             onClick={() => window.open(`https://zalo.me/${HOTLINE}`, '_blank')}
           >
-            💬 Đặt xe qua Zalo
+            Đặt xe qua Zalo
           </Button>
         </div>
       </Drawer>

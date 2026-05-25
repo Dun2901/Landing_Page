@@ -1,20 +1,9 @@
+import HeroSection from '@/components/sections/hero.section';
+
 const HomePage = () => {
   return (
     <>
-      <div
-        id="hero"
-        style={{
-          minHeight: '100vh',
-          background: '#f0f5ff',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <span style={{ color: '#1a3a6b', fontWeight: 700, fontSize: 24 }}>
-          Hero Section (Task 04)
-        </span>
-      </div>
+      <HeroSection />
       <div
         id="pricing"
         style={{

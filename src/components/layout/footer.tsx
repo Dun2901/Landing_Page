@@ -1,5 +1,11 @@
 import { Layout, Row, Col, Space, Divider } from 'antd';
-import { PhoneOutlined, EnvironmentOutlined } from '@ant-design/icons';
+import {
+  PhoneOutlined,
+  EnvironmentOutlined,
+  MessageOutlined,
+  ArrowRightOutlined,
+  CheckCircleFilled,
+} from '@ant-design/icons';
 
 const { Footer: AntFooter } = Layout;
 
@@ -35,7 +41,6 @@ export default function Footer() {
     >
       <div style={{ maxWidth: 1100, margin: '0 auto' }}>
         <Row gutter={[40, 32]}>
-          {/* Brand */}
           <Col xs={24} md={8}>
             <div style={{ marginBottom: 16 }}>
               <div
@@ -89,7 +94,8 @@ export default function Footer() {
                   textDecoration: 'none',
                 }}
               >
-                <PhoneOutlined /> 0909 123 456
+                <PhoneOutlined />
+                0909 123 456
               </a>
 
               <a
@@ -109,12 +115,12 @@ export default function Footer() {
                   textDecoration: 'none',
                 }}
               >
-                💬 Zalo
+                <MessageOutlined />
+                Zalo
               </a>
             </Space>
           </Col>
 
-          {/* Quick links */}
           <Col xs={12} md={6}>
             <div
               style={{
@@ -149,6 +155,9 @@ export default function Footer() {
                       fontSize: 13,
                       padding: 0,
                       transition: 'color 0.2s',
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      gap: 6,
                     }}
                     onMouseEnter={(e) => {
                       e.currentTarget.style.color = '#f97316';
@@ -157,14 +166,14 @@ export default function Footer() {
                       e.currentTarget.style.color = '#94a3b8';
                     }}
                   >
-                    → {link.label}
+                    <ArrowRightOutlined style={{ fontSize: 11 }} />
+                    {link.label}
                   </button>
                 </li>
               ))}
             </ul>
           </Col>
 
-          {/* Service areas */}
           <Col xs={12} md={10}>
             <div
               style={{
@@ -196,9 +205,17 @@ export default function Footer() {
                     color: '#94a3b8',
                     display: 'flex',
                     gap: 8,
+                    alignItems: 'flex-start',
                   }}
                 >
-                  <span style={{ color: '#2563eb', flexShrink: 0 }}>•</span>
+                  <CheckCircleFilled
+                    style={{
+                      color: '#2563eb',
+                      flexShrink: 0,
+                      fontSize: 11,
+                      marginTop: 4,
+                    }}
+                  />
                   {area}
                 </li>
               ))}

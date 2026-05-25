@@ -1,5 +1,5 @@
 import { FloatButton } from 'antd';
-import { PhoneOutlined } from '@ant-design/icons';
+import { MessageOutlined, PhoneOutlined } from '@ant-design/icons';
 
 const HOTLINE = '09091234';
 const ZALO_URL = 'https://zalo.me/09091234';
@@ -9,7 +9,11 @@ export default function FloatingCTA() {
     <FloatButton.Group style={{ right: 24, bottom: 80 }} trigger={undefined}>
       {/* Zalo */}
       <FloatButton
-        icon={<span style={{ fontSize: 16 }}>💬</span>}
+        icon={
+          <span style={{ fontSize: 16 }}>
+            <MessageOutlined />
+          </span>
+        }
         tooltip="Đặt xe qua Zalo"
         style={{ background: '#0068ff' }}
         onClick={() => window.open(ZALO_URL, '_blank')}
