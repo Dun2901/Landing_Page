@@ -1,9 +1,20 @@
-function Layout() {
+import { Layout } from 'antd';
+import { Outlet } from 'react-router';
+import Header from '@/components/layout/header';
+import Footer from '@/components/layout/footer';
+import FloatingCTA from '@/components/layout/floatingCTA';
+
+function AppLayout() {
   return (
-    <>
-      <div>Hello world router</div>
-    </>
+    <Layout style={{ minHeight: '100vh' }}>
+      <Header />
+      <Layout.Content>
+        <Outlet />
+      </Layout.Content>
+      <Footer />
+      <FloatingCTA />
+    </Layout>
   );
 }
 
-export default Layout;
+export default AppLayout;
