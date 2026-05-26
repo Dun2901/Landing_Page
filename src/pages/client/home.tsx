@@ -1,4 +1,6 @@
+import BenefitsSection from '@/components/sections/benefits.section';
 import HeroSection from '@/components/sections/hero.section';
+import LocationsSection from '@/components/sections/locations.section';
 import PriceTable from '@/components/sections/price.table';
 
 const HomePage = () => {
@@ -6,18 +8,8 @@ const HomePage = () => {
     <>
       <HeroSection />
       <PriceTable />
-      <div
-        id="benefits"
-        style={{
-          minHeight: '60vh',
-          background: '#f8fafc',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <span style={{ color: '#1a3a6b', fontWeight: 700 }}>Lợi Ích (Task 06)</span>
-      </div>
+      <BenefitsSection />
+      <LocationsSection />
       <div
         id="process"
         style={{
