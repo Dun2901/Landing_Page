@@ -1,21 +1,11 @@
 import HeroSection from '@/components/sections/hero.section';
+import PriceTable from '@/components/sections/price.table';
 
 const HomePage = () => {
   return (
     <>
       <HeroSection />
-      <div
-        id="pricing"
-        style={{
-          minHeight: '60vh',
-          background: '#fff',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-        }}
-      >
-        <span style={{ color: '#1a3a6b', fontWeight: 700 }}>Bảng Giá (Task 05)</span>
-      </div>
+      <PriceTable />
       <div
         id="benefits"
         style={{
