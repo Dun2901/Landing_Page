@@ -6,6 +6,8 @@ import {
   CarOutlined,
   TeamOutlined,
 } from '@ant-design/icons';
+import { useState } from 'react';
+import { trackEvent } from '@/utils/tracking';
 
 interface BookingFormValues {
   pickup: string;
@@ -41,12 +43,25 @@ const SERVICE_OPTIONS = [
 
 export default function BookingForm() {
   const [form] = Form.useForm();
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
 
-  const onFinish = (values: BookingFormValues) => {
-    console.log('Booking submitted:', values);
-    messageApi.success('Đặt xe thành công! Chúng tôi sẽ liên hệ bạn trong vài phút.');
-    form.resetFields();
+  const onFinish = async (values: BookingFormValues) => {
+    setIsSubmitting(true);
+
+    try {
+      console.log('Booking submitted:', values);
+
+      trackEvent('submit_booking_success', {
+        section: 'booking_form',
+        serviceType: values.serviceType,
+      });
+
+      messageApi.success('Đặt xe thành công! Chúng tôi sẽ liên hệ bạn trong vài phút.');
+      form.resetFields();
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -129,7 +144,7 @@ export default function BookingForm() {
           rules={[
             { required: true, message: 'Vui lòng nhập số điện thoại' },
             {
-              //   pattern: /^(0[3|5|7|8|9])+([0-9]{8})$/,
+              pattern: /^(0[3|5|7|8|9])+([0-9]{8})$/,
               message: 'Số điện thoại không hợp lệ',
             },
           ]}
@@ -147,7 +162,9 @@ export default function BookingForm() {
             type="primary"
             htmlType="submit"
             block
+            loading={isSubmitting}
             size="large"
+            icon={<CarOutlined />}
             style={{
               background: 'linear-gradient(135deg, #f97316, #ea580c)',
               borderColor: 'transparent',
@@ -158,7 +175,7 @@ export default function BookingForm() {
               boxShadow: '0 4px 16px rgba(249,115,22,0.4)',
             }}
           >
-            🚗 Đặt xe ngay
+            Đặt xe ngay
           </Button>
         </Form.Item>
       </Form>

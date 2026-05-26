@@ -7,10 +7,21 @@ import {
 } from '@ant-design/icons';
 import BookingForm from '@/components/sections/booking.form';
 import heroImage from '@/assets/hero.png';
+import { SITE_SEO } from '@/constants/seo.constant';
+import { trackEvent } from '@/utils/tracking';
 
 const { Title, Paragraph, Text } = Typography;
 
 export default function HeroSection() {
+  const handleScrollToBooking = () => {
+    trackEvent('click_hero_booking', { section: 'hero' });
+
+    document.getElementById('hero')?.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  };
+
   return (
     <section
       id="hero"
@@ -59,9 +70,7 @@ export default function HeroSection() {
                   letterSpacing: -1.6,
                 }}
               >
-                ĐÓN TẬN NHÀ - TRẢ TẬN CHỖ
-                <br />
-                <span style={{ color: '#f97316' }}>CAM KẾT ĐÚNG GIỜ 100%</span>
+                {SITE_SEO.h1}
               </Title>
 
               <Paragraph
@@ -98,6 +107,7 @@ export default function HeroSection() {
                 <Button
                   type="primary"
                   size="large"
+                  onClick={handleScrollToBooking}
                   style={{
                     height: 48,
                     paddingInline: 28,
@@ -113,7 +123,8 @@ export default function HeroSection() {
                 <Button
                   size="large"
                   icon={<PhoneOutlined />}
-                  href="tel:0909123456"
+                  href={`tel:${SITE_SEO.hotline}`}
+                  onClick={() => trackEvent('click_call', { section: 'hero' })}
                   style={{
                     height: 48,
                     paddingInline: 24,

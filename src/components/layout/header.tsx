@@ -7,6 +7,7 @@ import {
   CarOutlined,
   MessageOutlined,
 } from '@ant-design/icons';
+import { SITE_SEO } from '@/constants/seo.constant';
 
 const { Header: AntHeader } = Layout;
 const { useBreakpoint } = Grid;
@@ -20,7 +21,7 @@ const NAV_ITEMS = [
   { label: 'Liên hệ', href: '#contact' },
 ];
 
-const HOTLINE = '0909 123';
+const HOTLINE = SITE_SEO.hotline;
 
 const scrollTo = (href: string) => {
   const el = document.querySelector(href);

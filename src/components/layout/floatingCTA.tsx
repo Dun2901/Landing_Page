@@ -1,21 +1,11 @@
 import { MessageOutlined, PhoneOutlined } from '@ant-design/icons';
 import { Tooltip } from 'antd';
 import './floatingCTA.scss';
+import { SITE_SEO } from '@/constants/seo.constant';
+import { trackEvent } from '@/utils/tracking';
 
-const HOTLINE = '0909123456';
-const ZALO_URL = 'https://zalo.me/0909123456';
-
-type TrackingEventName = 'click_call' | 'click_zalo';
-
-const trackingEvent = (eventName: TrackingEventName) => {
-  const win = window as Window & {
-    gtag?: (type: string, eventName: string, params?: Record<string, string>) => void;
-  };
-
-  win.gtag?.('event', eventName, {
-    section: 'floating_cta',
-  });
-};
+const HOTLINE = SITE_SEO.hotline;
+const ZALO_URL = SITE_SEO.zaloUrl;
 
 export default function FloatingCTA() {
   return (
@@ -27,7 +17,7 @@ export default function FloatingCTA() {
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Chat Zalo đặt xe"
-          onClick={() => trackingEvent('click_zalo')}
+          onClick={() => trackEvent('click_zalo', { section: 'floating_cta' })}
         >
           <span className="floating-cta__icon">
             <MessageOutlined />
@@ -41,7 +31,7 @@ export default function FloatingCTA() {
           className="floating-cta__item floating-cta__item--phone"
           href={`tel:${HOTLINE}`}
           aria-label={`Gọi hotline ${HOTLINE}`}
-          onClick={() => trackingEvent('click_call')}
+          onClick={() => trackEvent('click_call', { section: 'floating_cta' })}
         >
           <span className="floating-cta__icon">
             <PhoneOutlined />
